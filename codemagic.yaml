@@ -2,9 +2,20 @@
 
 workflows:
     flutter-package:
-        name: Prismic Renderer
+        name: Testing Workflow
+        instance_type: mac_mini
+        max_build_duration: 60
+        triggering:
+          events:
+            - pull_request
+          branch_patterns:
+            - pattern: '*'
+            include: true
+            source: true
+          cancel_previous_builds: false
         environment:
             flutter: dev
         scripts:
             - flutter packages pub get
+            - flutter analyze
             - flutter test
